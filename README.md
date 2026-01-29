@@ -8,7 +8,7 @@ Install the required dependencies with pip install -r requirements.txt.
 Start the backend server using either
 python -m uvicorn server:app --host 127.0.0.1 --port 7860 --reload
 or simply run python run.py for convenience.
-Once the server is running, open http://127.0.0.1:7860 in your web browser to access the application.
+Once the server is running, open new link( http://127.0.0.1:7860) in your web browser to access the application.
 
 
 
