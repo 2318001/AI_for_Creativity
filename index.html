@@ -1,0 +1,168 @@
+<!--
+
+cd "C:\Users\Rajan\Desktop\Creativity of AI"
+.\venv_server\Scripts\activate
+python -m uvicorn server:app --host 127.0.0.1 --port 7860 --reload
+
+
+http://127.0.0.1:7860/
+
+http://127.0.0.1:7860/
+
+http://localhost:7860
+-->
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FaceTales</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- TOP: 3 preview boxes -->
+    <section class="rowTop">
+      <div class="box">
+        <div class="boxHead">Input</div>
+        <video id="video" autoplay playsinline class="media hidden"></video>
+        <img id="previewImg" class="media" alt="preview" />
+        <canvas id="canvas" class="hidden"></canvas>
+      </div>
+
+      <div class="box">
+        <div class="boxHead">2D</div>
+        <img id="art2d" class="media" alt="2d output" />
+      </div>
+
+      <div class="box">
+        <div class="boxHead">3D (GIF)</div>
+        <img id="art3d" class="media" alt="3d output" />
+      </div>
+    </section>
+
+    <!-- BOTTOM: controls + audio/poet -->
+    <section class="rowBottom">
+      <!-- Left controls -->
+      <div class="panel">
+        <div class="btnRow">
+          <button id="startCamBtn" class="btn">Start Webcam</button>
+          <button id="captureBtn" class="btn">Capture</button>
+
+          <label class="btn fileBtn">
+            Upload
+            <input id="fileInput" type="file" accept="image/*" />
+          </label>
+
+          <button id="generateBtn" class="btn primary" disabled>Generate</button>
+
+          <div class="pill" id="status">Ready</div>
+        </div>
+
+        <div class="controlsGrid">
+          <div class="ctrl">
+            <div class="lbl">Mode</div>
+            <div class="seg">
+              <button class="segBtn active" data-mode="2D">2D</button>
+              <button class="segBtn" data-mode="3D">3D</button>
+            </div>
+          </div>
+
+          <div class="ctrl">
+            <div class="lbl">Style</div>
+            <select id="styleTag">
+              <option>Dreamy</option>
+              <option>Retro</option>
+              <option>Cyber</option>
+              <option>Millennial</option>
+              <option>Nature</option>
+            </select>
+          </div>
+
+          <div class="ctrl wide">
+            <div class="lblRow">
+              <span class="lbl">Art Strength</span>
+              <span class="val" id="strengthVal">0.90</span>
+            </div>
+            <input id="strength" type="range" min="0" max="1" step="0.01" value="0.90" />
+          </div>
+
+          <div class="ctrl">
+            <div class="lbl">Music</div>
+            <div class="seg">
+              <button class="segBtn" data-music="Off">Off</button>
+              <button class="segBtn active" data-music="Auto">Auto</button>
+              <button class="segBtn" data-music="Manual">Manual</button>
+            </div>
+          </div>
+
+          <div class="ctrl">
+            <div class="lbl">Song</div>
+            <select id="song" disabled>
+              <option value="(none)">(none)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- hidden actual values for API -->
+        <input id="mode" type="hidden" value="2D" />
+        <input id="musicMode" type="hidden" value="Auto" />
+      </div>
+
+
+
+
+
+
+<!-- Fullscreen Viewer -->
+<div id="viewer" class="viewer hidden">
+  <div class="viewerBackdrop" id="viewerClose"></div>
+
+  <div class="viewerBox">
+    <button class="viewerBtn" id="viewerBtnClose">✕</button>
+
+    <img id="viewerImg" alt="fullscreen" />
+
+    <div class="viewerActions">
+      <a id="viewerDownload" class="viewerDownload" download target="_blank">Download</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+      <!-- Right: audio + poet -->
+      <div class="panelRight">
+        <div class="miniBox">
+          <div class="miniHead">♪ Audio (press play)</div>
+          <audio id="audio" controls></audio>
+        </div>
+
+        <div class="miniBox">
+          <div class="miniHead">Poet (short)</div>
+          <pre id="poem">—</pre>
+        </div>
+      </div>
+    </section>
+
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <div class="loadingText">Generating…</div>
+    </div>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
