@@ -1,9 +1,8 @@
 """
-app.py - ArtGen Gradio Interface
+app.py
 Multi-Modal Art Generator: 2D/3D Art with Style-Based Poetry and Music
 
-This application generates stylized artwork based on USER-SELECTED artistic styles,
-NOT emotion detection. The optional face detection serves only for image cropping
+This application generates stylized artwork based on USER-SELECTED artistic styles, The optional face detection serves only for image cropping
 and contextual enhancement.
 """
 import os
@@ -44,7 +43,7 @@ STYLE_TAGS = ["Dreamy", "Retro", "Cyber", "Millennial", "Nature"]
 # Custom CSS
 # ----------------------------------------------------
 CUSTOM_CSS = """
-/* Hide Gradio footer/branding */
+/*footer/branding */
 footer, #footer, .gradio-container footer {display:none !important;}
 a[href*="gradio"] {display:none !important;}
 .show-api, .api-docs, .built-with {display:none !important;}
@@ -334,9 +333,7 @@ def process_image(
     Main processing function.
     
     The USER'S STYLE SELECTION (style_tag) is the primary driver of art generation.
-    Face detection is optional and only used for image cropping/enhancement.
-    
-    Returns: (2d_art, 3d_gif_path, audio_path, poem, status_message)
+       Returns: (2d_art, 3d_gif_path, audio_path, poem, status_message)
     """
     audio_files = list_audio_files()
 
